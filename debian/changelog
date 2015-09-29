@@ -1,0 +1,5 @@
+charmtimetracker (1.10.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #800420)
+
+ -- Sandro Knauß <bugs@sandroknauss.de>  Tue, 29 Sep 2015 09:02:47 +0200

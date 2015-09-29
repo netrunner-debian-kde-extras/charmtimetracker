@@ -1,0 +1,88 @@
+Index: charmtimetracker-1.10.0/Charm/CMakeLists.txt
+===================================================================
+--- charmtimetracker-1.10.0.orig/Charm/CMakeLists.txt	2015-10-02 09:50:49.000000000 +0200
++++ charmtimetracker-1.10.0/Charm/CMakeLists.txt	2015-10-06 14:07:13.594126955 +0200
+@@ -110,31 +110,6 @@
+     ENDIF()
+ ENDIF()
+ 
+-LIST( APPEND CharmApplication_SRCS Keychain/keychain.cpp )
+-
+-IF (APPLE)
+-    LIST( APPEND CharmApplication_SRCS Keychain/keychain_mac.cpp MacApplicationCore.mm )
+-
+-    FIND_LIBRARY( COREFOUNDATION_LIBRARY CoreFoundation )
+-    LIST( APPEND CharmApplication_LIBS ${COREFOUNDATION_LIBRARY} )
+-
+-    FIND_LIBRARY( SECURITY_LIBRARY Security )
+-    LIST( APPEND CharmApplication_LIBS ${SECURITY_LIBRARY} )
+-
+-    FIND_LIBRARY( APPKIT_LIBRARY AppKit )
+-    LIST( APPEND CharmApplication_LIBS ${APPKIT_LIBRARY} )
+-ELSEIF ( WIN32 )
+-    LIST( APPEND CharmApplication_SRCS Keychain/keychain_win.cpp )
+-ELSEIF ( UNIX )
+-    IF (HAVE_DBUS)
+-        LIST( APPEND CharmApplication_SRCS Keychain/gnomekeyring.cpp Keychain/keychain_unix.cpp )
+-        QT_ADD_DBUS_INTERFACE( CharmApplication_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/Keychain/org.kde.KWallet.xml kwallet_interface KWalletInterface )
+-        LIST( APPEND CharmApplication_LIBS ${QT_QTDBUS_LIBRARY} )
+-    ELSE()
+-        LIST( APPEND CharmApplication_SRCS Keychain/keychain_unsecure.cpp )
+-    ENDIF()
+-ENDIF()
+-
+ QT_WRAP_UI(
+     UiGenerated_SRCS
+     Widgets/CommentEditorPopup.ui
+@@ -192,7 +167,7 @@
+ ENDIF()
+ 
+ ADD_EXECUTABLE( ${Charm_EXECUTABLE} WIN32 MACOSX_BUNDLE ${Charm_SRCS} ${Resources_SRCS} )
+-TARGET_LINK_LIBRARIES( ${Charm_EXECUTABLE} CharmApplication CharmCore ${QT_LIBRARIES} )
++TARGET_LINK_LIBRARIES( ${Charm_EXECUTABLE} CharmApplication CharmCore ${QT_LIBRARIES} ${QTKEYCHAIN_LIBRARIES})
+ IF( WIN32 )
+     TARGET_LINK_LIBRARIES( ${Charm_EXECUTABLE} Crypt32 )
+ ENDIF()
+Index: charmtimetracker-1.10.0/CMakeLists.txt
+===================================================================
+--- charmtimetracker-1.10.0.orig/CMakeLists.txt	2015-10-06 13:54:47.000000000 +0200
++++ charmtimetracker-1.10.0/CMakeLists.txt	2015-10-06 13:54:47.000000000 +0200
+@@ -50,6 +50,7 @@
+     find_package( Qt5Core QUIET )
+ ENDIF()
+ 
++
+ IF(Qt5Core_FOUND)
+     find_package(Qt5Widgets REQUIRED)
+     find_package(Qt5Xml REQUIRED)
+@@ -57,6 +58,8 @@
+     find_package(Qt5Sql REQUIRED)
+     find_package(Qt5Test REQUIRED)
+ 
++    find_package(Qt5Keychain REQUIRED)
++
+     find_package(Qt5PrintSupport)
+     IF(Qt5PrintSupport_FOUND)
+         include_directories(${Qt5PrintSupport_INCLUDE_DIRS})
+@@ -132,6 +135,8 @@
+     find_package(Qt4 COMPONENTS QtMain QtCore QtGui QtSql QtXml QtNetwork REQUIRED)
+     INCLUDE( UseQt4 )
+ 
++    find_package(QtKeychain REQUIRED)
++
+     SET(CHARM_MAC_HIGHRES_SUPPORT_ENABLED OFF)
+ 
+     IF(UNIX AND NOT APPLE)
+Index: charmtimetracker-1.10.0/Charm/HttpClient/HttpJob.cpp
+===================================================================
+--- charmtimetracker-1.10.0.orig/Charm/HttpClient/HttpJob.cpp	2015-10-02 09:50:49.000000000 +0200
++++ charmtimetracker-1.10.0/Charm/HttpClient/HttpJob.cpp	2015-10-06 14:03:25.978775492 +0200
+@@ -23,7 +23,7 @@
+ */
+ 
+ #include "HttpJob.h"
+-#include "Keychain/keychain.h"
++#include <qt5keychain/keychain.h>
+ 
+ #include <QNetworkAccessManager>
+ #include <QNetworkReply>

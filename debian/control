@@ -1,0 +1,26 @@
+Source: charmtimetracker
+Section: misc
+Priority: optional
+Maintainer: Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Uploaders: Sandro Knauß <bugs@sandroknauss.de>
+Build-Depends: debhelper (>= 9),
+	       cmake,
+               libqt5sql5-sqlite,
+               qtbase5-dev,
+               qt5keychain-dev,
+               xvfb
+Standards-Version: 3.9.6
+Homepage: https://github.com/KDAB/Charm
+#Vcs-Git: git://anonscm.debian.org/pkg-kde/charmtimetracker.git
+#Vcs-Browser: https://anonscm.debian.org/cgit/pkg-kde/charmtimetracker.git
+
+Package: charmtimetracker
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Cross-Platform Time Tracker 
+ It is built around two major ideas - tasks and events.
+ Tasks are the things time is spend on, repeatedly. Tasks
+ are done in events.
+ .
+ For example, ironing laundry is a task. The laundry done
+ for two hours on last Tuesday is an event in that task.

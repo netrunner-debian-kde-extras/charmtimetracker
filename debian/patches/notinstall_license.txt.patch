@@ -1,0 +1,14 @@
+Index: charmtimetracker-1.10.0/CMakeLists.txt
+===================================================================
+--- charmtimetracker-1.10.0.orig/CMakeLists.txt	2015-10-06 13:43:51.085725075 +0200
++++ charmtimetracker-1.10.0/CMakeLists.txt	2015-10-06 13:43:51.085725075 +0200
+@@ -239,9 +239,6 @@
+ 
+ SET( LICENSE_FILE "License.txt" )
+ SET( README_FILE "ReadMe.txt" )
+-IF( NOT APPLE )
+-    INSTALL( FILES "${LICENSE_FILE}" "${README_FILE}" DESTINATION ${DOC_INSTALL_DIR} )
+-ENDIF()
+ 
+     # Only support CPack packaging on newer versions of CMake.
+ IF( NOT "${CMAKE_VERSION}" VERSION_LESS "2.8.4" )

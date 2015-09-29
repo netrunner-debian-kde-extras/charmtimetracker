@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+
+include /usr/share/dpkg/default.mk
+CHARM_VERSION := $(shell dpkg-parsechangelog | sed -ne 's/Version: \([0-9.]\+\).*$$/\1/p')
+
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@ --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	-DCharm_VERSION=$(CHARM_VERSION) -DCMAKE_BUILD_TYPE=Release
+
+override_dh_auto_test:
+	{ \
+	Xvfb :99 & \
+	PID=$$! ; \
+	DISPLAY=:99 dh_auto_test ; \
+	kill -9 $$PID; \
+	}
