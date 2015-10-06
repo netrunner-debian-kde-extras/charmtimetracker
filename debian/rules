@@ -12,9 +12,4 @@ override_dh_auto_configure:
 	-DCharm_VERSION=$(DEB_VERSION_UPSTREAM) -DCMAKE_BUILD_TYPE=Release
 
 override_dh_auto_test:
-	{ \
-	Xvfb :99 & \
-	PID=$$! ; \
-	DISPLAY=:99 dh_auto_test ; \
-	kill -9 $$PID; \
-	}
+	xvfb-run dh_auto_test
