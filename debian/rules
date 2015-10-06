@@ -2,8 +2,6 @@
 export DH_VERBOSE = 1
 
 include /usr/share/dpkg/default.mk
-CHARM_VERSION := $(shell dpkg-parsechangelog | sed -ne 's/Version: \([0-9.]\+\).*$$/\1/p')
-
 #export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 %:
@@ -11,7 +9,7 @@ CHARM_VERSION := $(shell dpkg-parsechangelog | sed -ne 's/Version: \([0-9.]\+\).
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-	-DCharm_VERSION=$(CHARM_VERSION) -DCMAKE_BUILD_TYPE=Release
+	-DCharm_VERSION=$(DEB_VERSION_UPSTREAM) -DCMAKE_BUILD_TYPE=Release
 
 override_dh_auto_test:
 	{ \
