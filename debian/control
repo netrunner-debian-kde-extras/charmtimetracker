@@ -11,8 +11,8 @@ Build-Depends: debhelper (>= 9),
                xvfb
 Standards-Version: 3.9.6
 Homepage: https://github.com/KDAB/Charm
-#Vcs-Git: git://anonscm.debian.org/pkg-kde/charmtimetracker.git
-#Vcs-Browser: https://anonscm.debian.org/cgit/pkg-kde/charmtimetracker.git
+Vcs-Git: git://anonscm.debian.org/pkg-kde/kde-extras/charmtimetracker.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-kde/kde-extras/charmtimetracker.git
 
 Package: charmtimetracker
 Architecture: any
