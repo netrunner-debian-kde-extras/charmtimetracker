@@ -2,14 +2,14 @@
 export DH_VERBOSE = 1
 
 include /usr/share/dpkg/default.mk
-#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CPPFLAGS_MAINT_APPEND = -DNDEBUG -DQT_NO_DEBUG_OUTPUT
 
 %:
 	dh $@ --parallel
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-	-DCharm_VERSION=$(DEB_VERSION_UPSTREAM) -DCMAKE_BUILD_TYPE=Release
+	-DCharm_VERSION=$(DEB_VERSION_UPSTREAM)
 
 override_dh_auto_test:
 	xvfb-run dh_auto_test
