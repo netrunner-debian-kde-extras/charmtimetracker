@@ -18,7 +18,7 @@ Vcs-Browser: https://anonscm.debian.org/cgit/pkg-kde/kde-extras/charmtimetracker
 Package: charmtimetracker
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Cross-Platform Time Tracker 
+Description: Cross-Platform Time Tracker
  It is built around two major ideas - tasks and events.
  Tasks are the things time is spend on, repeatedly. Tasks
  are done in events.
