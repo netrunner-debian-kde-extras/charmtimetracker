@@ -5,6 +5,20 @@ Source: https://github.com/KDAB/Charm
 Files: *
 Copyright: 2006-2015 Klarälvdalens Datakonsult AB <info@kdab.com>
            2011-2014 Frank Osterfeld <frank.osterfeld@gmail.com>
+           Allen Winter <allen.winter@kdab.com>
+           David Faure <david.faure@kdab.com>
+           Franck Arrecot <franck.arrecot@kdab.com>
+           Guillermo A. Amaral <gamaral@kdab.com>
+           Jesper Pedersen <jesper.pedersen@kdab.com>
+           Mathias Hasselmann <mathias.hasselmann@kdab.com>
+           Michel Boyer de la Giroday <michel.giroday@kdab.com>
+           Mike Arthur <mike.mcquaid@kdab.com>
+           Mike McQuaid <mike.mcquaid@kdab.com>
+           Mirko Boehm <mirko.boehm@kdab.com>
+           Nicholas Van Sickle <nicholas.vansickle@kdab.com>
+           Olivier JG <olivier.de.gaalon@kdab.com>
+           Pál Tóth <pal.toth@kdab.com>
+           Sebastian Sauer <sebastian.sauer@kdab.com>
 License: GPL-2+
 
 Files: debian/*
