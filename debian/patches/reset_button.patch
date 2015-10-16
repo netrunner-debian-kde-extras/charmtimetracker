@@ -1,13 +1,13 @@
 Index: charmtimetracker/Charm/Widgets/CharmPreferences.cpp
 ===================================================================
---- charmtimetracker.orig/Charm/Widgets/CharmPreferences.cpp	2015-10-06 15:25:00.001340812 +0200
-+++ charmtimetracker/Charm/Widgets/CharmPreferences.cpp	2015-10-15 19:17:35.395175781 +0200
+--- charmtimetracker.orig/Charm/Widgets/CharmPreferences.cpp	2015-10-16 09:14:28.500046513 +0200
++++ charmtimetracker/Charm/Widgets/CharmPreferences.cpp	2015-10-16 09:27:05.745936007 +0200
 @@ -46,6 +46,8 @@
  
      m_ui.lbWarnUnuploadedTimesheets->setVisible( httpJobPossible );
      m_ui.cbWarnUnuploadedTimesheets->setVisible( httpJobPossible );
-+    m_ui.lbResetPassword.setVisible( httpJobPossible );
-+    m_ui.pbResetPassword.setVisible( httpJobPossible );
++    m_ui.lbResetPassword->setVisible( httpJobPossible );
++    m_ui.pbResetPassword->setVisible( httpJobPossible );
      m_ui.cbIdleDetection->setEnabled( haveIdleDetection );
      m_ui.lbIdleDetection->setEnabled( haveIdleDetection );
      m_ui.cbIdleDetection->setChecked( config.detectIdling && m_ui.cbIdleDetection->isEnabled() );
